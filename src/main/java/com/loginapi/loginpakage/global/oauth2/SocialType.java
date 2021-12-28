@@ -27,12 +27,12 @@ public enum SocialType {
 
 
     private String socialName;
-    private String userInfoUri;
+    private String userInfoUrl;
     private HttpMethod method;
 
-    SocialType(String socialName, String userInfoUri, HttpMethod method) {
+    SocialType(String socialName, String userInfoUrl, HttpMethod method) {
         this.socialName = socialName;
-        this.userInfoUri = userInfoUri;
+        this.userInfoUrl = userInfoUrl;
         this.method = method;
     }
 
@@ -44,7 +44,7 @@ public enum SocialType {
         return socialName;
     }
 
-    public String getUserInfoUri() {
-        return userInfoUri;
+    public String getUserInfoUrl() {
+        return userInfoUrl;
     }
 }

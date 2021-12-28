@@ -23,29 +23,24 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class LoadUserService {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-    private SocialLoadStrategy socialLoadStrategy;
+    private SocialLoadStrategy socialLoadStrategy;//추상 클래스, 로그인을 진행하는 사이트레 따라 달라짐
 
 
     public OAuth2UserDetails getOAuth2UserDetails(AccessTokenSocialTypeToken authentication)  {
+
         SocialType socialType = authentication.getSocialType();
 
-        setSocialLoadStrategy(socialType);
+        setSocialLoadStrategy(socialType);//SocialLoadStrategy 설정
 
-        String socialPk = socialLoadStrategy.getSocialPk(authentication.getAccessToken());
+        String socialPk = socialLoadStrategy.getSocialPk(authentication.getAccessToken());//PK 가져오기
 
-        return OAuth2UserDetails.builder()
+        return OAuth2UserDetails.builder() //PK와 SocialType을 통해 회원 생성
                 .socialId(socialPk)
                 .socialType(socialType)
                 .build();
@@ -60,9 +55,6 @@ public class LoadUserService {
             default -> throw new IllegalArgumentException("지원하지 않는 로그인 형식입니다");
         };
     }
-
-
-
 
 
 }

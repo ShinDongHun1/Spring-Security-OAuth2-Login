@@ -19,10 +19,9 @@ import java.util.Map;
 public class NaverLoadStrategy extends SocialLoadStrategy{
 
 
-
     protected String sendRequestToSocialSite(HttpEntity request){
         try {
-            ResponseEntity<Map<String, Object>> response = restTemplate.exchange(SocialType.NAVER.getUserInfoUri(),//
+            ResponseEntity<Map<String, Object>> response = restTemplate.exchange(SocialType.NAVER.getUserInfoUrl(),//
                     SocialType.NAVER.getMethod(),
                     request,
                     RESPONSE_TYPE);
@@ -33,7 +32,7 @@ public class NaverLoadStrategy extends SocialLoadStrategy{
 
 
         } catch (Exception e) {
-            log.error("AccessToken을 사용하여 KAKAO 유저정보를 받아오던 중 예외가 발생했습니다 {}" ,e.getMessage() );
+            log.error("AccessToken을 사용하여 NAVER 유저정보를 받아오던 중 예외가 발생했습니다 {}" ,e.getMessage() );
             throw e;
         }
     }

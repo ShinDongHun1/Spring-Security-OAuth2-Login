@@ -14,7 +14,7 @@ public class GoogleLoadStrategy extends SocialLoadStrategy{
 
     protected String sendRequestToSocialSite(HttpEntity request){
         try {
-            ResponseEntity<Map<String, Object>> response = restTemplate.exchange(SocialType.GOOGLE.getUserInfoUri(),
+            ResponseEntity<Map<String, Object>> response = restTemplate.exchange(SocialType.GOOGLE.getUserInfoUrl(),
                     SocialType.GOOGLE.getMethod(),
                     request,
                     RESPONSE_TYPE);

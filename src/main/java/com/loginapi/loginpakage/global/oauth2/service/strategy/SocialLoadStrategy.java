@@ -28,7 +28,7 @@ public abstract class SocialLoadStrategy {
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(params, headers);
 
-        return sendRequestToSocialSite(request);
+        return sendRequestToSocialSite(request);//구체 클래스가 구현
     }
 
     protected abstract String sendRequestToSocialSite(HttpEntity request);
